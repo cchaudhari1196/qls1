@@ -1,0 +1,109 @@
+<div class="container">
+
+  <form [formGroup]="studentDetails" (ngSubmit)="onSubmit()" style="text-align: center;border:5px solid;    background-color: ghostwhite;">
+    <h3>Student Registration</h3>
+
+      <div class="row">
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-2">
+              Student Name:
+          </div> 
+          <div class="col-md-6" style="text-align: left;">
+            <input type="text" formControlName="studentName" placeholder="Student Name" required>
+          </div>
+        </div>
+        <span *ngIf="studentName.invalid && (studentName.dirty || studentName.touched)" class="alert alert-danger">
+          Please enter Student Name
+        </span>
+      </div>
+      <div class="row">
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-2">
+            Board:
+          </div> 
+          <div class="col-md-6" style="text-align: left;">
+            <select name="board" id="board" formControlName="board" (change)="onSelectBoard()">
+              <option value="">--Choose Board--</option>
+              <option [ngValue]="board" *ngFor="let board of boards">{{board.board_name}}</option>
+            </select>
+          </div>
+        </div>
+        <span *ngIf="board.invalid && (board.dirty || board.touched)" class="alert alert-danger">
+          Please enter Board
+        </span>
+      </div>
+
+
+      <div class="row">
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-2">
+            Medium:
+          </div> 
+          <div class="col-md-6" style="text-align: left;">
+            <select name="medium" id="medium" formControlName="medium" (change)="onSelectMedium()">
+              <option value="">--Choose Medium--</option>
+              <option [ngValue]="m" *ngFor="let m of mediums">{{m.medium_name}}</option>
+            </select>
+          </div>
+        </div>
+        <span *ngIf="medium.invalid && (medium.dirty || medium.touched)" class="alert alert-danger">
+          Please enter Medium
+        </span>
+      </div>
+      <div class="row">
+        
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-2">
+            Standard:
+          </div> 
+          <div class="col-md-6" style="text-align: left;">
+            <select name="standard" id="standard" formControlName="standard" (change)="onSelectStandard()">
+              <option value="">--Choose Standard--</option>
+              <option [ngValue]="s" *ngFor="let s of standards">{{s.standard}}</option>
+            </select>
+          </div>
+        </div>
+        <span *ngIf="standard.invalid && (standard.dirty || standard.touched)" class="alert alert-danger">
+          Please enter standard
+        </span>
+      </div>
+      <div class="row">
+        
+        
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-2">
+            Password:
+          </div> 
+          <div class="col-md-6" style="text-align: left;">
+            <input type="password" formControlName="password" placeholder="Password">
+          </div>
+        </div>
+        <span *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+          Please enter password
+        </span>
+      </div>
+      <div class="row">
+        
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-2">
+            Confirm Password:
+          </div> 
+          <div class="col-md-6" style="text-align: left;">
+            <input type="password" formControlName="cPassword" placeholder=" Confirm Password">
+          </div>
+        </div>
+        <span *ngIf="studentDetails.errors || studentDetails .errors?.mismatch" style="font-size: small;color: red;">
+          Password doesn't match
+        </span>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!studentDetails.valid">Submit</button>
+  </form>
+
+</div>
